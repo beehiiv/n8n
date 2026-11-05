@@ -3,5 +3,5 @@
 ## 0.1.0
 
 - Initial official beehiiv community node.
-- Subscriber operations: create, get many, get by email, update, add tags, remove tags, add to a list, update a list subscription, enroll in an automation.
+- Subscriber operations: create, list subscriptions, get by email, update, add tags, remove tags, add to a list, update a list subscription, enroll in an automation.
 - Newsletter List operations: get many.
