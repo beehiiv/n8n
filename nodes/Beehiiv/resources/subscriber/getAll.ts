@@ -90,7 +90,38 @@ export const subscriberGetManyDescription: INodeProperties[] = [
             },
          },
          {
+            displayName: 'Email',
+            name: 'email',
+            type: 'string',
+            default: '',
+            placeholder: 'e.g. reader@example.com',
+            description: 'Exact subscriber email, case insensitive',
+            routing: {
+               send: {
+                  type: 'query',
+                  property: 'email',
+               },
+            },
+         },
+         {
             ...subscriberExpandField,
+         },
+         {
+            displayName: 'Premium Tier IDs',
+            name: 'premiumTierIds',
+            type: 'string',
+            default: [],
+            typeOptions: {
+               multipleValues: true,
+            },
+            placeholder: 'e.g. tier_00000000-0000-0000-0000-000000000000',
+            description: 'Only include subscriptions on these premium tiers',
+            routing: {
+               send: {
+                  type: 'query',
+                  property: 'premium_tier_ids[]',
+               },
+            },
          },
          {
             displayName: 'Status',
