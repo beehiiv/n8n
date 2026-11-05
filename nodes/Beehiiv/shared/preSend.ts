@@ -89,6 +89,15 @@ export async function applyCreateSubscriberUrl(
    return requestOptions;
 }
 
+export async function applyListNewsletterListsUrl(
+   this: IExecuteSingleFunctions,
+   requestOptions: IHttpRequestOptions,
+): Promise<IHttpRequestOptions> {
+   const publicationId = getPublicationId(this);
+   requestOptions.url = `/publications/${publicationId}/newsletter_lists`;
+   return requestOptions;
+}
+
 export async function applyUpdateSubscriberUrl(
    this: IExecuteSingleFunctions,
    requestOptions: IHttpRequestOptions,

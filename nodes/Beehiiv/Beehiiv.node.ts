@@ -1,5 +1,6 @@
 import { type INodeType, type INodeTypeDescription, NodeConnectionTypes } from 'n8n-workflow';
 
+import { newsletterListDescription } from './resources/newsletterList';
 import { subscriberDescription } from './resources/subscriber';
 import { searchAutomations, searchNewsletterLists, searchPublications } from './shared/listSearch';
 
@@ -34,12 +35,17 @@ export class Beehiiv implements INodeType {
             noDataExpression: true,
             options: [
                {
+                  name: 'Newsletter List',
+                  value: 'newsletterList',
+               },
+               {
                   name: 'Subscriber',
                   value: 'subscriber',
                },
             ],
             default: 'subscriber',
          },
+         ...newsletterListDescription,
          ...subscriberDescription,
       ],
    };
