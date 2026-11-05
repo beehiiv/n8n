@@ -15,6 +15,7 @@ import { subscriberAddTagsDescription } from './addTags';
 import { subscriberAddToListDescription } from './addToList';
 import { subscriberCreateDescription } from './create';
 import { subscriberEnrollInAutomationDescription } from './enrollInAutomation';
+import { subscriberGetManyDescription } from './getAll';
 import { subscriberGetByEmailDescription } from './getByEmail';
 import { subscriberRemoveTagsDescription } from './removeTags';
 import { subscriberUpdateDescription } from './update';
@@ -42,6 +43,22 @@ export const subscriberDescription: INodeProperties[] = [
             routing: {
                request: {
                   method: 'POST',
+                  url: '/publications/subscriptions',
+               },
+               send: {
+                  preSend: [applyCreateSubscriberUrl],
+               },
+               output: unwrapDataOutput,
+            },
+         },
+         {
+            name: 'Get Many',
+            value: 'getAll',
+            action: 'List subscriptions',
+            description: 'List subscribers for a publication',
+            routing: {
+               request: {
+                  method: 'GET',
                   url: '/publications/subscriptions',
                },
                send: {
@@ -166,6 +183,7 @@ export const subscriberDescription: INodeProperties[] = [
       default: 'create',
    },
    ...subscriberCreateDescription,
+   ...subscriberGetManyDescription,
    ...subscriberGetByEmailDescription,
    ...subscriberUpdateDescription,
    ...subscriberAddTagsDescription,

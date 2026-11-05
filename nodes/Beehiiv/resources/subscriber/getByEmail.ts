@@ -1,6 +1,6 @@
 import type { INodeProperties } from 'n8n-workflow';
 
-import { publicationSelect, subscriberEmailField } from '../../shared/descriptions';
+import { publicationSelect, subscriberEmailField, subscriberExpandField } from '../../shared/descriptions';
 
 const showOnlyForGetByEmail = {
    operation: ['getByEmail'],
@@ -23,28 +23,6 @@ export const subscriberGetByEmailDescription: INodeProperties[] = [
       placeholder: 'Add Field',
       default: {},
       displayOptions: { show: showOnlyForGetByEmail },
-      options: [
-         {
-            displayName: 'Expand',
-            name: 'expand',
-            type: 'multiOptions',
-            default: [],
-            description: 'Related objects to include on the subscriber',
-            options: [
-               { name: 'Custom Fields', value: 'custom_fields' },
-               { name: 'Newsletter Lists', value: 'newsletter_lists' },
-               { name: 'Referrals', value: 'referrals' },
-               { name: 'Stats', value: 'stats' },
-               { name: 'Subscription Premium Tiers', value: 'subscription_premium_tiers' },
-               { name: 'Tags', value: 'tags' },
-            ],
-            routing: {
-               send: {
-                  type: 'query',
-                  property: 'expand[]',
-               },
-            },
-         },
-      ],
+      options: [subscriberExpandField],
    },
 ];

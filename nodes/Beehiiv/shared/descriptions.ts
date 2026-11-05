@@ -54,6 +54,28 @@ export const subscriberEmailField: INodeProperties = {
    description: 'The subscriber email address',
 };
 
+export const subscriberExpandField: INodeProperties = {
+   displayName: 'Expand',
+   name: 'expand',
+   type: 'multiOptions',
+   default: [],
+   description: 'Related objects to include on the subscriber',
+   options: [
+      { name: 'Custom Fields', value: 'custom_fields' },
+      { name: 'Newsletter Lists', value: 'newsletter_lists' },
+      { name: 'Referrals', value: 'referrals' },
+      { name: 'Stats', value: 'stats' },
+      { name: 'Subscription Premium Tiers', value: 'subscription_premium_tiers' },
+      { name: 'Tags', value: 'tags' },
+   ],
+   routing: {
+      send: {
+         type: 'query',
+         property: 'expand[]',
+      },
+   },
+};
+
 export const subscriptionIdField: INodeProperties = {
    displayName: 'Subscription ID',
    name: 'subscriptionId',
