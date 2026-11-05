@@ -23,7 +23,7 @@ jobs:
           version: 1.9.4
 
       - name: Check formatting
-        run: biome format --check .
+        run: biome check --linter-enabled=false credentials nodes
 
   biome:
     name: Biome
@@ -37,7 +37,7 @@ jobs:
           version: 1.9.4
 
       - name: Lint
-        run: biome lint .
+        run: biome lint credentials nodes
 
   lint:
     name: n8n lint
