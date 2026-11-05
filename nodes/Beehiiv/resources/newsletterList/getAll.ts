@@ -67,47 +67,4 @@ export const newsletterListGetManyDescription: INodeProperties[] = [
          },
       },
    },
-   {
-      displayName: 'Additional Fields',
-      name: 'additionalFields',
-      type: 'collection',
-      placeholder: 'Add Field',
-      default: {},
-      displayOptions: { show: showOnlyForListGetMany },
-      options: [
-         {
-            displayName: 'Direction',
-            name: 'direction',
-            type: 'options',
-            options: [
-               { name: 'Ascending', value: 'asc' },
-               { name: 'Descending', value: 'desc' },
-            ],
-            default: 'asc',
-            description: 'The sort direction of the results',
-            routing: {
-               send: {
-                  type: 'query',
-                  property: 'direction',
-               },
-            },
-         },
-         {
-            displayName: 'Page',
-            name: 'page',
-            type: 'number',
-            default: 1,
-            typeOptions: {
-               minValue: 1,
-            },
-            description: 'Page of results to return. Ignored when Return All is enabled.',
-            routing: {
-               send: {
-                  type: 'query',
-                  property: 'page',
-               },
-            },
-         },
-      ],
-   },
 ];
