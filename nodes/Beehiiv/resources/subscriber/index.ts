@@ -54,7 +54,7 @@ export const subscriberDescription: INodeProperties[] = [
          {
             name: 'Get Many',
             value: 'getAll',
-            action: 'List subscriptions',
+            action: 'Get many subscriptions',
             description: 'List subscribers for a publication',
             routing: {
                request: {

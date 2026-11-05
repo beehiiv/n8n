@@ -21,7 +21,7 @@ export const newsletterListDescription: INodeProperties[] = [
          {
             name: 'Get Many',
             value: 'getAll',
-            action: 'List newsletter lists',
+            action: 'Get many newsletter lists',
             description: 'List newsletter lists for a publication',
             routing: {
                request: {
