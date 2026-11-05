@@ -17,12 +17,7 @@ export const subscriberGetByEmailDescription: INodeProperties[] = [
       displayOptions: { show: showOnlyForGetByEmail },
    },
    {
-      displayName: 'Additional Fields',
-      name: 'additionalFields',
-      type: 'collection',
-      placeholder: 'Add Field',
-      default: {},
+      ...subscriberExpandField,
       displayOptions: { show: showOnlyForGetByEmail },
-      options: [subscriberExpandField],
    },
 ];

@@ -3,9 +3,9 @@ import type { INodeProperties } from 'n8n-workflow';
 import { noContentOutput, unwrapDataOutput } from '../../shared/descriptions';
 import {
    applyAddToListUrl,
-   applyCreateSubscriberUrl,
    applyEnrollInAutomationUrl,
    applyGetByEmailUrl,
+   applyPublicationSubscriptionsUrl,
    applySubscriberIdentityBody,
    applySubscriptionTagsUrl,
    applyUpdateListSubscriptionUrl,
@@ -46,7 +46,7 @@ export const subscriberDescription: INodeProperties[] = [
                   url: '/publications/subscriptions',
                },
                send: {
-                  preSend: [applyCreateSubscriberUrl],
+                  preSend: [applyPublicationSubscriptionsUrl],
                },
                output: unwrapDataOutput,
             },
@@ -62,7 +62,7 @@ export const subscriberDescription: INodeProperties[] = [
                   url: '/publications/subscriptions',
                },
                send: {
-                  preSend: [applyCreateSubscriberUrl],
+                  preSend: [applyPublicationSubscriptionsUrl],
                },
                output: unwrapDataOutput,
             },

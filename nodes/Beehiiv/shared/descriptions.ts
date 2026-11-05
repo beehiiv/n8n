@@ -92,7 +92,7 @@ export const newsletterListSelect: INodeProperties = {
    type: 'resourceLocator',
    default: { mode: 'list', value: '' },
    required: true,
-   description: 'The newsletter list to add the subscriber to',
+   description: 'The newsletter list',
    modes: [
       {
          displayName: 'From List',

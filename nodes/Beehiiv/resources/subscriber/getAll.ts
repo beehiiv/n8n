@@ -68,12 +68,7 @@ export const subscriberGetManyDescription: INodeProperties[] = [
       },
    },
    {
-      displayName: 'Additional Fields',
-      name: 'additionalFields',
-      type: 'collection',
-      placeholder: 'Add Field',
-      default: {},
+      ...subscriberExpandField,
       displayOptions: { show: showOnlyForGetMany },
-      options: [subscriberExpandField],
    },
 ];

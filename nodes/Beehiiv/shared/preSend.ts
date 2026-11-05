@@ -68,7 +68,7 @@ async function resolveSubscriptionId(context: IExecuteSingleFunctions, publicati
    }
 }
 
-export async function applyCreateSubscriberUrl(
+export async function applyPublicationSubscriptionsUrl(
    this: IExecuteSingleFunctions,
    requestOptions: IHttpRequestOptions,
 ): Promise<IHttpRequestOptions> {
