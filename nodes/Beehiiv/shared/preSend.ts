@@ -116,13 +116,28 @@ export async function applyUpdateSubscriberUrl(
    return requestOptions;
 }
 
-export async function applyAddTagsUrl(
+export async function applySubscriptionTagsUrl(
    this: IExecuteSingleFunctions,
    requestOptions: IHttpRequestOptions,
 ): Promise<IHttpRequestOptions> {
    const publicationId = getPublicationId(this);
    const subscriptionId = await resolveSubscriptionId(this, publicationId);
    requestOptions.url = `/publications/${publicationId}/subscriptions/${subscriptionId}/tags`;
+   return requestOptions;
+}
+
+export async function applyGetByEmailUrl(
+   this: IExecuteSingleFunctions,
+   requestOptions: IHttpRequestOptions,
+): Promise<IHttpRequestOptions> {
+   const publicationId = getPublicationId(this);
+   const email = this.getNodeParameter('email') as string;
+
+   if (!email) {
+      throw new NodeOperationError(this.getNode(), 'Email is required');
+   }
+
+   requestOptions.url = `/publications/${publicationId}/subscriptions/by_email/${encodeURIComponent(email)}`;
    return requestOptions;
 }
 
@@ -133,6 +148,17 @@ export async function applyAddToListUrl(
    const publicationId = getPublicationId(this);
    const newsletterListId = locatorValue(this.getNodeParameter('newsletterListId', { extractValue: true }));
    requestOptions.url = `/publications/${publicationId}/newsletter_lists/${newsletterListId}/subscriptions`;
+   return requestOptions;
+}
+
+export async function applyUpdateListSubscriptionUrl(
+   this: IExecuteSingleFunctions,
+   requestOptions: IHttpRequestOptions,
+): Promise<IHttpRequestOptions> {
+   const publicationId = getPublicationId(this);
+   const newsletterListId = locatorValue(this.getNodeParameter('newsletterListId', { extractValue: true }));
+   const subscriptionId = await resolveSubscriptionId(this, publicationId);
+   requestOptions.url = `/publications/${publicationId}/newsletter_lists/${newsletterListId}/subscriptions/by_subscription_id/${subscriptionId}`;
    return requestOptions;
 }
 

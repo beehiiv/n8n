@@ -1,6 +1,6 @@
 # beehiiv for n8n
 
-Official [beehiiv](https://www.beehiiv.com) community node for [n8n](https://n8n.io/). Create and update subscribers, add tags, add a subscriber to a newsletter list, and enroll a subscriber in an automation.
+Official [beehiiv](https://www.beehiiv.com) community node for [n8n](https://n8n.io/). Create, get, and update subscribers, add or remove tags, manage newsletter list membership, and enroll a subscriber in an automation.
 
 n8n is a [fair-code licensed](https://docs.n8n.io/sustainable-use-license/) workflow automation platform.
 
@@ -17,12 +17,15 @@ v1 covers the REQ-2493 subscriber workflow. Each operation needs a publication.
 | Resource | Operation | API |
 | --- | --- | --- |
 | Subscriber | Create | `POST /v2/publications/{publicationId}/subscriptions` |
+| Subscriber | Get by Email | `GET /v2/publications/{publicationId}/subscriptions/by_email/{email}` |
 | Subscriber | Update | `PUT /v2/publications/{publicationId}/subscriptions/{id}` or `.../by_email/{email}` |
 | Subscriber | Add Tags | `POST /v2/publications/{publicationId}/subscriptions/{id}/tags` |
+| Subscriber | Remove Tags | `DELETE /v2/publications/{publicationId}/subscriptions/{id}/tags` |
 | Subscriber | Add to List | `POST /v2/publications/{publicationId}/newsletter_lists/{listId}/subscriptions` |
+| Subscriber | Update List Subscription | `PATCH /v2/publications/{publicationId}/newsletter_lists/{listId}/subscriptions/by_subscription_id/{id}` |
 | Subscriber | Enroll in Automation | `POST /v2/publications/{publicationId}/automations/{automationId}/journeys` |
 
-Create and update accept custom fields, UTM values, and related subscription options. Add Tags looks up the subscription by email when you do not have the subscription ID. Add to List and Enroll in Automation accept either email or subscription ID.
+Create and update accept custom fields, UTM values, and related subscription options. Get by Email can expand tags, custom fields, stats, referrals, premium tiers, and newsletter lists. Add Tags, Remove Tags, and Update List Subscription look up the subscription by email when you do not have the subscription ID. Remove Tags does not delete the tag from the publication. Update List Subscription currently unsubscribes the person from that list only, not from the publication. Add to List and Enroll in Automation accept either email or subscription ID.
 
 Enroll in Automation requires the automation to have an active **Add by API** trigger. Existing subscribers are not enrolled by Create; use Enroll in Automation for that.
 
@@ -48,7 +51,7 @@ Typical flow for a new reader:
 3. **Add to List** if they belong on a newsletter list that is not auto-subscribe.
 4. **Enroll in Automation** only for people who already exist in beehiiv.
 
-To change an existing subscriber, use **Update** with email or subscription ID.
+To look up an existing subscriber, use **Get by Email**. To change one, use **Update** with email or subscription ID. To take someone off a newsletter list, use **Update List Subscription**.
 
 ## Development
 

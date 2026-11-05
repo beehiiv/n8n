@@ -1,19 +1,24 @@
 import type { INodeProperties } from 'n8n-workflow';
 
-import { unwrapDataOutput } from '../../shared/descriptions';
+import { noContentOutput, unwrapDataOutput } from '../../shared/descriptions';
 import {
-   applyAddTagsUrl,
    applyAddToListUrl,
    applyCreateSubscriberUrl,
    applyEnrollInAutomationUrl,
+   applyGetByEmailUrl,
    applySubscriberIdentityBody,
+   applySubscriptionTagsUrl,
+   applyUpdateListSubscriptionUrl,
    applyUpdateSubscriberUrl,
 } from '../../shared/preSend';
 import { subscriberAddTagsDescription } from './addTags';
 import { subscriberAddToListDescription } from './addToList';
 import { subscriberCreateDescription } from './create';
 import { subscriberEnrollInAutomationDescription } from './enrollInAutomation';
+import { subscriberGetByEmailDescription } from './getByEmail';
+import { subscriberRemoveTagsDescription } from './removeTags';
 import { subscriberUpdateDescription } from './update';
+import { subscriberUpdateListSubscriptionDescription } from './updateListSubscription';
 
 const showOnlyForSubscribers = {
    resource: ['subscriber'],
@@ -46,6 +51,22 @@ export const subscriberDescription: INodeProperties[] = [
             },
          },
          {
+            name: 'Get by Email',
+            value: 'getByEmail',
+            action: 'Get a subscriber by email',
+            description: 'Get an existing subscriber by email',
+            routing: {
+               request: {
+                  method: 'GET',
+                  url: '/publications/subscriptions/by_email',
+               },
+               send: {
+                  preSend: [applyGetByEmailUrl],
+               },
+               output: unwrapDataOutput,
+            },
+         },
+         {
             name: 'Update',
             value: 'update',
             action: 'Update a subscriber',
@@ -72,9 +93,25 @@ export const subscriberDescription: INodeProperties[] = [
                   url: '/publications/subscriptions/tags',
                },
                send: {
-                  preSend: [applyAddTagsUrl],
+                  preSend: [applySubscriptionTagsUrl],
                },
                output: unwrapDataOutput,
+            },
+         },
+         {
+            name: 'Remove Tags',
+            value: 'removeTags',
+            action: 'Remove tags from a subscriber',
+            description: 'Remove tags from an existing subscriber',
+            routing: {
+               request: {
+                  method: 'DELETE',
+                  url: '/publications/subscriptions/tags',
+               },
+               send: {
+                  preSend: [applySubscriptionTagsUrl],
+               },
+               output: noContentOutput,
             },
          },
          {
@@ -89,6 +126,22 @@ export const subscriberDescription: INodeProperties[] = [
                },
                send: {
                   preSend: [applyAddToListUrl, applySubscriberIdentityBody],
+               },
+               output: unwrapDataOutput,
+            },
+         },
+         {
+            name: 'Update List Subscription',
+            value: 'updateListSubscription',
+            action: 'Update a newsletter list subscription',
+            description: 'Unsubscribe a subscriber from a newsletter list',
+            routing: {
+               request: {
+                  method: 'PATCH',
+                  url: '/publications/newsletter_lists/subscriptions',
+               },
+               send: {
+                  preSend: [applyUpdateListSubscriptionUrl],
                },
                output: unwrapDataOutput,
             },
@@ -113,8 +166,11 @@ export const subscriberDescription: INodeProperties[] = [
       default: 'create',
    },
    ...subscriberCreateDescription,
+   ...subscriberGetByEmailDescription,
    ...subscriberUpdateDescription,
    ...subscriberAddTagsDescription,
+   ...subscriberRemoveTagsDescription,
    ...subscriberAddToListDescription,
+   ...subscriberUpdateListSubscriptionDescription,
    ...subscriberEnrollInAutomationDescription,
 ];

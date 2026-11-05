@@ -1,4 +1,4 @@
-import type { INodeProperties } from 'n8n-workflow';
+import type { IExecuteSingleFunctions, INodeExecutionData, INodeProperties } from 'n8n-workflow';
 
 export const publicationSelect: INodeProperties = {
    displayName: 'Publication',
@@ -125,4 +125,20 @@ export const unwrapDataOutput = {
          },
       },
    ],
+};
+
+export async function noContentSuccess(
+   this: IExecuteSingleFunctions,
+   items: INodeExecutionData[],
+): Promise<INodeExecutionData[]> {
+   return items.map((item) => ({
+      json: {
+         success: true,
+      },
+      pairedItem: item.pairedItem,
+   }));
+}
+
+export const noContentOutput = {
+   postReceive: [noContentSuccess],
 };

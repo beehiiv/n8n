@@ -11,7 +11,7 @@ export class Beehiiv implements INodeType {
       group: ['transform'],
       version: 1,
       subtitle: '={{$parameter["operation"] + ": " + $parameter["resource"]}}',
-      description: 'Create and update beehiiv subscribers, tags, lists, and automations',
+      description: 'Create, get, and update beehiiv subscribers, tags, lists, and automations',
       defaults: {
          name: 'beehiiv',
       },
