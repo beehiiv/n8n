@@ -26,7 +26,7 @@ v1 covers the REQ-2493 subscriber workflow. Each operation needs a publication.
 | Subscriber | Enroll in Automation | `POST /v2/publications/{publicationId}/automations/{automationId}/journeys` |
 | Newsletter List | Get Many | `GET /v2/publications/{publicationId}/newsletter_lists` |
 
-Create and update accept custom fields, UTM values, and related subscription options. Tag and list operations look up the subscriber by email when you do not have the ID. Remove Tags leaves the publication tag in place. Update List Subscription unsubscribes from that list only, not the publication.
+Create and update accept custom fields, UTM values, and related subscription options. Get by Email can expand tags, custom fields, stats, referrals, premium tiers, and newsletter lists. Tag and list operations look up the subscriber by email when you do not have the ID. Remove Tags leaves the publication tag in place. Update List Subscription unsubscribes from that list only, not the publication.
 
 Enroll in Automation requires the automation to have an active **Add by API** trigger. Existing subscribers are not enrolled by Create; use Enroll in Automation for that.
 
