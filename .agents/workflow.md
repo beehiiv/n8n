@@ -25,6 +25,8 @@ When asked to build or update a node in this project, follow these steps:
    - Outline what description the node will have, its resources and
      operations
    - Which credentials the node will use and their properties
+   - Apply `.agents/ponytail.md`: reuse existing helpers first, skip
+     speculative fields and abstractions, and keep the declarative node
    - Confirm the plan, if you are not given one and are generating it
    - **Never start coding without a plan**
 4. Implement. Create or update:

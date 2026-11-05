@@ -72,6 +72,9 @@ project _may_ contain example nodes and/or credentials that need to be
 **removed or renamed** once you start making an actual node.
 
 ## Key guidelines
+- For coding tasks, follow [`.agents/ponytail.md`](.agents/ponytail.md) after
+  understanding the affected flow. The always-on Cursor rule is
+  `.cursor/rules/ponytail.mdc`.
 - Use the `n8n-node` CLI tool **whenever possible** for building, dev mode,
   linting, etc.
 - **Always** address any lint/typecheck errors/warnings, unless there is a
@@ -86,10 +89,11 @@ Load these before working on the relevant area:
 
 | Working on...                        | Read first                                                          |
 |--------------------------------------|---------------------------------------------------------------------|
-| Any node file in `nodes/`            | `.agents/nodes.md` and `.agents/properties.md`                      |
+| Any implementation, refactor, review | `.agents/ponytail.md`                                               |
+| Any node file in `nodes/`            | `.agents/ponytail.md`, `.agents/nodes.md`, and `.agents/properties.md` |
 | A declarative-style node             | above + `.agents/nodes-declarative.md`                              |
 | A programmatic-style node            | above + `.agents/nodes-programmatic.md`                             |
-| Files in `credentials/`              | `.agents/credentials.md`                                            |
+| Files in `credentials/`              | `.agents/ponytail.md` and `.agents/credentials.md`                  |
 | Adding a new version to a node       | `.agents/versioning.md`                                             |
 | Starting a new task or planning      | `.agents/workflow.md`                                               |
 

@@ -1,22 +1,10 @@
 import type { IDataObject, IExecuteSingleFunctions, IHttpRequestOptions } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 
+import { locatorValue } from './locator';
 import { beehiivApiRequest } from './transport';
 
 export type SubscriberIdentifyBy = 'email' | 'id';
-
-function locatorValue(value: unknown): string {
-   if (typeof value === 'string') {
-      return value;
-   }
-
-   if (value && typeof value === 'object' && 'value' in value) {
-      const nested = (value as { value: unknown }).value;
-      return typeof nested === 'string' ? nested : '';
-   }
-
-   return '';
-}
 
 function getPublicationId(context: IExecuteSingleFunctions): string {
    const publicationId = locatorValue(context.getNodeParameter('publicationId', { extractValue: true }));

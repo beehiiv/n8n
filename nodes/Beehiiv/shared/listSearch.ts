@@ -1,6 +1,7 @@
 import type { ILoadOptionsFunctions, INodeListSearchResult } from 'n8n-workflow';
 import { NodeOperationError } from 'n8n-workflow';
 
+import { locatorValue } from './locator';
 import { beehiivApiRequest } from './transport';
 
 type BeehiivNamedResource = {
@@ -13,19 +14,6 @@ type BeehiivPage<T> = {
    page?: number;
    total_pages?: number;
 };
-
-function locatorValue(value: unknown): string {
-   if (typeof value === 'string') {
-      return value;
-   }
-
-   if (value && typeof value === 'object' && 'value' in value) {
-      const nested = (value as { value: unknown }).value;
-      return typeof nested === 'string' ? nested : '';
-   }
-
-   return '';
-}
 
 function getPublicationId(context: ILoadOptionsFunctions): string {
    const publicationId = locatorValue(context.getCurrentNodeParameter('publicationId', { extractValue: true }));
