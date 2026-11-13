@@ -23,7 +23,6 @@
   },
   "scripts": {
     "build": "n8n-node build",
-    "build:watch": "tsc --watch",
     "dev": "n8n-node dev",
     "format": "biome format --write .",
     "lint": "n8n-node lint",
