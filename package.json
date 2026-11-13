@@ -1,0 +1,65 @@
+{
+  "name": "@beehiiv/n8n-nodes-beehiiv",
+  "version": "0.1.0",
+  "description": "Official beehiiv community node for n8n.",
+  "license": "MIT",
+  "homepage": "https://github.com/beehiiv/n8n",
+  "keywords": [
+    "n8n-community-node-package",
+    "beehiiv",
+    "newsletter",
+    "email"
+  ],
+  "author": {
+    "name": "beehiiv",
+    "email": "support@beehiiv.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/beehiiv/n8n.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "n8n-node build",
+    "dev": "n8n-node dev",
+    "format": "biome format --write .",
+    "lint": "n8n-node lint",
+    "lint:fix": "n8n-node lint --fix",
+    "lint:biome": "biome lint --write .",
+    "release": "n8n-node release",
+    "prepublishOnly": "n8n-node prerelease",
+    "hooks": "husky"
+  },
+  "lint-staged": {
+    "*.{js,ts,mjs,mts}": "biome check --write --no-errors-on-unmatched"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/BeehiivApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Beehiiv/Beehiiv.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@n8n/node-cli": "0.56.1",
+    "eslint": "9.32.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^17.0.7",
+    "prettier": "3.6.2",
+    "release-it": "^21.1.0",
+    "typescript": "5.9.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "packageManager": "pnpm@10.6.5"
+}
